@@ -2,9 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+const mongoose = require('mongoose');
+const db = mongoose.connection;
+mongoose.connect('mongodb+srv://user:user@cluster.ite32.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true});
+
 const PORT = 6969;
 
-// mongodb+srv://user:<password>@cluster.ite32.mongodb.net/test
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}) );
@@ -15,6 +18,14 @@ app.all("/*", function(req, res, next){
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
   next();
 });
+
+db.once = function (open, param2) {
+  
+}
+db.once('open', function() {
+  console.log();
+});
+
 
 
 let allFriends = [{firstName: 'Coach', lastName: 'Tim', email: 'tim.broos@becode.org', phoneNumber: '0469420666', codingLanguage: 'Javascript'}];
