@@ -4,6 +4,8 @@ const app = express();
 
 const PORT = 6969;
 
+// mongodb+srv://user:<password>@cluster.ite32.mongodb.net/test
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}) );
 
