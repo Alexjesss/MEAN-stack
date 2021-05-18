@@ -19,11 +19,8 @@ app.all("/*", function(req, res, next){
   next();
 });
 
-db.once = function (open, param2) {
-  
-}
 db.once('open', function() {
-  console.log();
+  console.log('hello');
 });
 
 
