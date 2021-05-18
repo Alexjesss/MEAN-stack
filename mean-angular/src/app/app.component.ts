@@ -13,7 +13,7 @@ export class AppComponent {
   friendModel = new Friend();
   codingList = ['Javascript', 'PHP', 'Java', 'Python', 'C++'];
 
-  getAllFriends = 'http://localhost:9000/allFriends';
+  getAllFriends = 'http://localhost:6969/allFriends';
 
   addFriend(): void {
     this.addFriendService.postRequest(this.friendModel).subscribe(succes => 'it works',
