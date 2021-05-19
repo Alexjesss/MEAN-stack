@@ -4,7 +4,6 @@ const app = express();
 
 const mongoose = require('mongoose');
 const db = mongoose.connection;
-mongoose.connect('mongodb+srv://user:user@cluster.ite32.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true});
 
 const PORT = 6969;
 
@@ -19,8 +18,17 @@ app.all("/*", function(req, res, next){
   next();
 });
 
+mongoose.connect('mongodb+srv://user:alexandra@cluster.ite32.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true});
+
+db.on('error', function(err){
+  console.error("connection error;", err);
+});
 db.once('open', function() {
   console.log('hello');
+});
+
+const Friend = new mongoose.Schema({
+  name: String
 });
 
 
