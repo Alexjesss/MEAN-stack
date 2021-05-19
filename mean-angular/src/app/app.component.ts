@@ -14,6 +14,7 @@ export class AppComponent {
   codingList = ['Javascript', 'PHP', 'Java', 'Python', 'C++'];
 
   getAllFriends = 'http://localhost:6969/allFriends';
+  deleteFriendUrl = 'http://localhost:6969/deleteFriend';
 
   addFriend(): void {
     this.addFriendService.postRequest(this.friendModel).subscribe(succes => 'it works',
@@ -41,14 +42,9 @@ export class AppComponent {
   }
 
   public async deleteFriend(email: string): Promise<any> {
-    await fetch(this.getAllFriends, {method: 'get', headers: {'Content-Type': 'application/json'}})
-      .then(response => {
-        return response.json() as Promise<any>;
-      })
-      .then(response => {
-        return this.friendList = response;
-      });
-    this.friendList = this.friendList.filter(friend => friend.email !== email);
+    this.addFriendService.deleteFriend(email).subscribe
+    this.deleteFriendUrl.then(response => console.log(this.getAllFriends)), error => console.error(error);
+    await fetch(this.getAllFriends, {method: 'get', headers: {'Content-Type': 'application/json'}});
   }
 
 }

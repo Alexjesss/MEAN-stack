@@ -5,9 +5,6 @@ const app = express();
 const mongoose = require('mongoose');
 const db = mongoose.connection;
 
-let myquery = { email: friend.email };
-
-
 const PORT = 6969;
 
 
@@ -70,6 +67,11 @@ app.post('/addFriend', function (request, response) {
   const newFriend = Friend(request.body);
   newFriend.save().then(response => console.log(response,'friend saved'));
   response.status(200).send({"message": "Data received"});
+});
+
+app.post('/removeFriend', function (request, response){
+  const deleteFriend = Friend(request.body.email);
+  console.log(deleteFriend)
 });
 
 app.listen(PORT, function () {
