@@ -9,31 +9,41 @@ const PORT = 6969;
 
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}) );
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.all("/*", function(req, res, next){
+app.all("/*", function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
   next();
 });
 
-mongoose.connect('mongodb+srv://user:alexandra@cluster.ite32.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://user:alexandra@cluster.ite32.mongodb.net/test', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
-db.on('error', function(err){
+db.on('error', function (err) {
   console.error("connection error;", err);
 });
-db.once('open', function() {
+db.once('open', function () {
+
+  friend.firstName = "Coach";
+  friend.lastName = 'Tim';
+  friend.email = 'tim.broos@becode.org';
+  friend.phoneNumber = '0469420666';
+  friend.codingLanguage = 'Javascript';
+  friend.save().then(response => console.log(response,'friend saved'));
+
   console.log('hello');
 });
 
-const Friend = new mongoose.Schema({
+const friendSchema = new mongoose.Schema({
   name: String
 });
 
-
-
-let allFriends = [{firstName: 'Coach', lastName: 'Tim', email: 'tim.broos@becode.org', phoneNumber: '0469420666', codingLanguage: 'Javascript'}];
+const Friend = mongoose.model("Friend", friendSchema, "friends");
+let friend = new Friend();
 
 // Below you can define how your API handles a get or a post request.
 // Try sending a get request to the root, you should get a "Hello from server" back.
@@ -47,7 +57,8 @@ app.post('/', function (request, response) {
 });
 
 app.get('/allFriends', function (request, response) {
-  response.send(allFriends);
+  Friend.find().then(allFriends => response.status(200).send(allFriends));
+  console.log(app.get)
 });
 
 app.post('/addFriend', function (request, response) {
@@ -55,4 +66,5 @@ app.post('/addFriend', function (request, response) {
   response.status(200).send(allFriends);
 });
 
-app.listen(PORT, function () {});
+app.listen(PORT, function () {
+});
