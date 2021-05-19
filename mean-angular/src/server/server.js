@@ -39,7 +39,11 @@ db.once('open', function () {
 });
 
 const friendSchema = new mongoose.Schema({
-  name: String
+  firstName: String,
+  lastName: String,
+  email: String,
+  phoneNumber: String,
+  codingLanguage: String
 });
 
 const Friend = mongoose.model("Friend", friendSchema, "friends");
