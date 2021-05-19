@@ -34,8 +34,6 @@ db.once('open', function () {
   friend.phoneNumber = '0469420666';
   friend.codingLanguage = 'Javascript';
   friend.save().then(response => console.log(response,'friend saved'));
-  Friend.find().then(response => console.log(response,'friend found'));
-  console.log('hello');
 });
 
 const friendSchema = new mongoose.Schema({
@@ -58,6 +56,17 @@ app.get('/', function (request, response) {
 
 app.post('/', function (request, response) {
   response.status(200).send({"message": "Data received"});
+});
+
+
+app.get('/allFriends', function (request, response) {
+  Friend.find().then(allFriends => response.status(200).send({"message": "Data received"}));
+});
+
+app.post('/addFriend', function (request, response) {
+  const newFriend = newFriend();
+
+  Friend.find().then(response => console.log(response,'friend found'));
 });
 
 app.listen(PORT, function () {
