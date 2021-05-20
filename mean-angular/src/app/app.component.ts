@@ -21,10 +21,6 @@ export class AppComponent {
     this.fetchFriends().then(r => console.log(r));
   }
 
-  test(friend: Friend): void {
-    this.deleteFriend(friend).then(r => this.fetchFriends().then(r => console.log(r)));
-  }
-
   public async fetchFriends(): Promise<any> {
     await fetch('http://localhost:6969/allFriends', {method: 'get', headers: {'Content-Type': 'application/json'}})
       .then(response => {
@@ -49,7 +45,6 @@ export class AppComponent {
   public async deleteFriend(friend: Friend): Promise<any> {
     this.addFriendService.deleteFriend(friend).subscribe
     (response => this.fetchFriends().then(response => console.log(response)), error => console.error(error));
-    // this.fetchFriends(this.getAllFriends).then(r => console.log(r));
   }
 
   public async updateFriend(): Promise<any> {
