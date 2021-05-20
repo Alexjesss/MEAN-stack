@@ -45,8 +45,24 @@
 
 .delete-btn {
   position: absolute;
-  right: -150px;
+  right: -290px;
   background: #f34541;
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 0.4rem;
+  display: inline-block;
+  border: none;
+  top: 1px;
+}
+
+.update-btn {
+  position: absolute;
+  right: -150px;
+  background: darkolivegreen;
   color: #fff !important;
   text-transform: uppercase;
   text-decoration: none;

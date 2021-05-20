@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
 export class AddFriendService {
   url = 'http://localhost:6969/addFriend';
   urlDel = 'http://localhost:6969/deleteFriend';
+  urlUp = 'http://localhost:6969/updateFriend';
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +17,11 @@ export class AddFriendService {
     return this.http.post( this.url, friend);
   }
 
-  deleteFriend(email: string): Observable<any>{
-    return this.http.post(this.urlDel, email);
+  deleteFriend(friend: Friend): Observable<any>{
+    return this.http.post(this.urlDel, friend);
+  }
+
+  updateFriend(friend: Friend): Observable<any>{
+    return this.http.post(this.urlUp, friend);
   }
 }

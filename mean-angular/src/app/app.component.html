@@ -58,7 +58,8 @@
       <ul>
         <li *ngFor="let friend of friendList">
           {{ friend.firstName + ' ' + friend.lastName + ' ' + friend.email + ' ' + friend.phoneNumber + ' ' + friend.codingLanguage }}
-          <button class="delete-btn" (click)="deleteFriend(friend.email)">Delete friend</button>
+          <button class="update-btn" (click)="updateFriend()">Update friend</button>
+          <button class="delete-btn" (click)="test(friend)">Delete friend</button>
         </li>
       </ul>
     </div>

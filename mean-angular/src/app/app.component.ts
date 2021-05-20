@@ -14,26 +14,30 @@ export class AppComponent {
   codingList = ['Javascript', 'PHP', 'Java', 'Python', 'C++'];
 
   getAllFriends = 'http://localhost:6969/allFriends';
-  // deleteFriendUrl = 'http://localhost:6969/deleteFriend';
 
   addFriend(): void {
     this.addFriendService.postRequest(this.friendModel).subscribe(succes => 'it works',
       error => console.log(error));
-    this.fetchFriends(this.getAllFriends);
+    this.fetchFriends().then(r => console.log(r));
   }
 
-  public async fetchFriends(getAllFriends: string): Promise<any> {
-    await fetch(this.getAllFriends, {method: 'get', headers: {'Content-Type': 'application/json'}})
+  test(friend: Friend): void {
+    this.deleteFriend(friend).then(r => this.fetchFriends().then(r => console.log(r)));
+  }
+
+  public async fetchFriends(): Promise<any> {
+    await fetch('http://localhost:6969/allFriends', {method: 'get', headers: {'Content-Type': 'application/json'}})
       .then(response => {
         return response.json() as Promise<any>;
       })
       .then(response => {
+        console.log(response)
         return this.friendList = response;
       });
   }
 
   ngOnInit(): any {
-    this.fetchFriends(this.getAllFriends);
+    this.fetchFriends().then(r => console.log(r));
   }
 
   constructor(
@@ -41,19 +45,17 @@ export class AppComponent {
   ) {
   }
 
-  // public async deleteFriend(email: string): Promise<any> {
-  //   this.addFriendService.deleteFriend(email).subscribe
-  //   this.deleteFriendUrl.then(response => console.log(this.getAllFriends)), error => console.error(error);
-  //   await fetch(this.getAllFriends, {method: 'get', headers: {'Content-Type': 'application/json'}});
-  // }
 
+  public async deleteFriend(friend: Friend): Promise<any> {
+    this.addFriendService.deleteFriend(friend).subscribe
+    (response => this.fetchFriends().then(response => console.log(response)), error => console.error(error));
+    // this.fetchFriends(this.getAllFriends).then(r => console.log(r));
+  }
 
-
-
-  public async deleteFriend(email: string): Promise<any> {
-    this.addFriendService.deleteFriend(email).subscribe
-    (response => this.fetchFriends(this.getAllFriends).then(response => console.log(this.getAllFriends)), error => console.error(error));
-    await fetch(this.getAllFriends, {method: 'get', headers: {'Content-Type': 'application/json'}});
+  public async updateFriend(): Promise<any> {
+    this.addFriendService.updateFriend(this.friendModel).subscribe
+    (response => this.fetchFriends().then(response => console.log(this.getAllFriends)), error => console.error(error));
+    this.fetchFriends().then(r => console.log(r));
   }
 
 }
