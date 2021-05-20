@@ -21,7 +21,7 @@ export class AppComponent {
       error => console.error(error));
     // this.fetchFriends().then(r => console.log(r));
   }
-  
+
   public async fetchFriends(): Promise<any> {
     await fetch('http://localhost:6969/allFriends', {method: 'get', headers: {'Content-Type': 'application/json'}})
       .then(response => {
@@ -50,10 +50,9 @@ export class AppComponent {
     (response => this.fetchFriends().then(response => console.log(response)), error => console.error(error));
   }
 
-  public async updateFriend(): Promise<any> {
-    this.addFriendService.updateFriend(this.friendModel).subscribe
-    (response => this.fetchFriends().then(response => console.log(this.getAllFriends)), error => console.error(error));
-    this.fetchFriends().then(r => console.log(r));
+  public async updateFriend(friend: Friend): Promise<any> {
+    this.addFriendService.updateFriend(friend).subscribe
+    (response => this.fetchFriends().then(response => console.log(response)), error => console.error(error));
   }
 
 }

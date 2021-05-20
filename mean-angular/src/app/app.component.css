@@ -43,6 +43,19 @@
   border: none;
 }
 
+.submit-btn {
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: darkolivegreen;
+  margin: 20px -15px;
+  padding: 10px;
+  border-radius: 0.4rem;
+  display: inline-block;
+  border: none;
+  position: absolute;
+}
+
 .delete-btn {
   position: absolute;
   right: -290px;

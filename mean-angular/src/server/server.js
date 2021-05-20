@@ -70,8 +70,8 @@ app.post('/addFriend', function (request, response) {
 });
 
 app.post('/updateFriend', function (request, response) {
-  Friend.find().then(allFriends => response.status(200).send(allFriends));
-  Friend.updateOne().then(response => console.log(response,'friend updated'));
+  Friend.updateOne({email: request.body.email}).then(r => console.log(r, 'friend updated'));
+  response.status(200).send({"message": "Data received"});
 });
 
 app.post('/deleteFriend', function (request, response){

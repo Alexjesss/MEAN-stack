@@ -54,11 +54,14 @@
     <button type="submit" [disabled]="formName.form.invalid" (click)="addFriend()" (keyup.enter)="addFriend()"
             class="add-btn">Add friend
     </button>
+    <button type="submit" [disabled]="formName.form.invalid"
+            class="submit-btn">Save update
+    </button>
     <div class="list">
       <ul>
         <li *ngFor="let friend of friendList">
           {{ friend.firstName + ' ' + friend.lastName + ' ' + friend.email + ' ' + friend.phoneNumber + ' ' + friend.codingLanguage }}
-          <button class="update-btn" (click)="updateFriend()">Update friend</button>
+          <button class="update-btn" (click)="updateFriend(friend)">Update friend</button>
           <button class="delete-btn" (click)="deleteFriend(friend)">Delete friend</button>
         </li>
       </ul>
