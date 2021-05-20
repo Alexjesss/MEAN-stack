@@ -69,10 +69,15 @@ app.post('/addFriend', function (request, response) {
   response.status(200).send({"message": "Data received"});
 });
 
-app.post('/removeFriend', function (request, response){
-  const deleteFriend = Friend(request.body.email);
-  console.log(deleteFriend)
+app.post('/deleteFriend', function (request, response){
+  Friend.find().then(allFriends => response.status(200).send(allFriends));
+  Friend.deleteOne({email: friend.email}).then(response =>console.log(response,'friend deleted'));
 });
+
+// app.post('/deleteFriend', function (request, response) {
+//   console.log(request.body);
+//   Friend.deleteOne({ request.body.email }).then(x =>console.log('friend deleted'));
+// });
 
 app.listen(PORT, function () {
 });
