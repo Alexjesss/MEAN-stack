@@ -16,11 +16,12 @@ export class AppComponent {
   getAllFriends = 'http://localhost:6969/allFriends';
 
   addFriend(): void {
-    this.addFriendService.postRequest(this.friendModel).subscribe(succes => 'it works',
-      error => console.log(error));
-    this.fetchFriends().then(r => console.log(r));
+    this.addFriendService.postRequest(this.friendModel).subscribe(succes => this.fetchFriends()
+      .then(res => console.log(this.friendModel)),
+      error => console.error(error));
+    // this.fetchFriends().then(r => console.log(r));
   }
-
+  
   public async fetchFriends(): Promise<any> {
     await fetch('http://localhost:6969/allFriends', {method: 'get', headers: {'Content-Type': 'application/json'}})
       .then(response => {
@@ -31,6 +32,8 @@ export class AppComponent {
         return this.friendList = response;
       });
   }
+
+
 
   ngOnInit(): any {
     this.fetchFriends().then(r => console.log(r));

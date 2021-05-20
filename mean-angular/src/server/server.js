@@ -65,8 +65,8 @@ app.get('/allFriends', function (request, response) {
 
 app.post('/addFriend', function (request, response) {
   const newFriend = Friend(request.body);
-  console.log(request.body)
-  newFriend.save().then(r => response.status(200).send({"message": "Data received"}));
+  newFriend.save().then(r => console.log(r, 'friend added'));
+  response.status(200).send({"message": "Data received"});
 });
 
 app.post('/updateFriend', function (request, response) {
@@ -75,7 +75,8 @@ app.post('/updateFriend', function (request, response) {
 });
 
 app.post('/deleteFriend', function (request, response){
-  Friend.deleteOne({email: request.body.email}).then(r => response.status(200).send({"message": "Data received"}));
+  Friend.deleteOne({email: request.body.email}).then(r => console.log(r, 'friend deleted'));
+    response.status(200).send({"message": "Data received"});
 });
 
 app.listen(PORT, function () {
