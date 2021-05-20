@@ -55,7 +55,7 @@
             class="add-btn">Add friend
     </button>
     <button type="submit" [disabled]="formName.form.invalid"
-            class="submit-btn">Save update
+            class="submit-btn" (click)="updateFriend(this.friendModel)">Save update
     </button>
     <div class="list">
       <ul>

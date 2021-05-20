@@ -43,7 +43,6 @@ export class AppComponent {
   ) {
   }
 
-
   public async deleteFriend(friend: Friend): Promise<any> {
     this.addFriendService.deleteFriend(friend).subscribe
     (response => this.fetchFriends().then(response => console.log(response)), error => console.error(error));
