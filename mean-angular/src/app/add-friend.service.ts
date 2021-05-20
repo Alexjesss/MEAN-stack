@@ -21,7 +21,8 @@ export class AddFriendService {
     return this.http.post(this.urlDel, friend);
   }
 
-  updateFriend(friend: Friend): Observable<any>{
-    return this.http.post(this.urlUp, friend);
+  updateFriend(friend: Friend, updatedFriend: Friend): Observable<any>{
+    updatedFriend.email = friend.email;
+    return this.http.post(this.urlUp, updatedFriend);
   }
 }

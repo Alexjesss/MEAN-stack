@@ -19,7 +19,6 @@ export class AppComponent {
     this.addFriendService.postRequest(this.friendModel).subscribe(succes => this.fetchFriends()
       .then(res => console.log(this.friendModel)),
       error => console.error(error));
-    // this.fetchFriends().then(r => console.log(r));
   }
 
   public async fetchFriends(): Promise<any> {
@@ -51,7 +50,7 @@ export class AppComponent {
   }
 
   public async updateFriend(friend: Friend): Promise<any> {
-    this.addFriendService.updateFriend(friend).subscribe
+    this.addFriendService.updateFriend(friend, this.friendModel).subscribe
     (response => this.fetchFriends().then(response => console.log(response)), error => console.error(error));
   }
 

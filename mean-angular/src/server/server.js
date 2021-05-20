@@ -70,7 +70,7 @@ app.post('/addFriend', function (request, response) {
 });
 
 app.post('/updateFriend', function (request, response) {
-  Friend.updateOne({email: request.body.email}).then(r => console.log(r, 'friend updated'));
+  Friend.replaceOne({email: request.body.email}, request.body).then(r => console.log(r, 'friend updated'));
   response.status(200).send({"message": "Data received"});
 });
 
